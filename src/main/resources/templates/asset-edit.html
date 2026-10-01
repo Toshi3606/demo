@@ -1,0 +1,84 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>資産編集</title>
+  </head>
+  <body>
+    <h1>資産編集画面</h1>
+
+    <form th:action="@{/asset/update/{id}(id=${asset.assetId})}" method="post">
+      <input type="hidden" name="assetId" th:value="${asset.assetId}" />
+
+      <table border="1">
+        <tr>
+          <th>ID</th>
+          <td th:text="${asset.assetId}"></td>
+        </tr>
+
+        <tr>
+          <th>資産名</th>
+          <td>
+            <input type="text" name="assetName" th:value="${asset.assetName}" />
+          </td>
+        </tr>
+
+        <tr>
+          <th>種別</th>
+          <td>
+            <input type="text" name="assetType" th:value="${asset.assetType}" />
+          </td>
+        </tr>
+
+        <tr>
+          <th>金額</th>
+          <td>
+            <input type="number" name="amount" th:value="${asset.amount}" />
+          </td>
+        </tr>
+
+        <tr>
+          <th>預入日</th>
+          <td>
+            <input
+              type="date"
+              name="depositDate"
+              th:value="${asset.depositDate}"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <th>満期日</th>
+          <td>
+            <input
+              type="date"
+              name="maturityDate"
+              th:value="${asset.maturityDate}"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <th>金利</th>
+          <td>
+            <input
+              type="number"
+              step="0.01"
+              name="interestRate"
+              th:value="${asset.interestRate}"
+            />
+          </td>
+        </tr>
+      </table>
+
+      <br />
+
+      <button type="submit">更新</button>
+    </form>
+
+    <br />
+
+    <a th:href="@{/}"> 一覧へ戻る </a>
+  </body>
+</html>

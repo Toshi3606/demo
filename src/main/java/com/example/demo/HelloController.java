@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-    @GetMapping("/")
+    @GetMapping("/api")
     public String index() {
         return "Spring Boot Running";
     }
@@ -16,3 +16,4 @@ public class HelloController {
         return "Hello Spring Boot!";
     }
 }
+

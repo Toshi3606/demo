@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>資産詳細</title>
+</head>
+<body>
+
+<h1>資産詳細画面</h1>
+
+<table border="1">
+
+    <tr>
+        <th>資産ID</th>
+        <td th:text="${asset.assetId}"></td>
+    </tr>
+
+    <tr>
+        <th>資産名</th>
+        <td th:text="${asset.assetName}"></td>
+    </tr>
+
+    <tr>
+        <th>種別</th>
+        <td th:text="${asset.assetType}"></td>
+    </tr>
+
+    <tr>
+        <th>金額</th>
+        <td th:text="${#numbers.formatDecimal(asset.amount, 0, 'COMMA', 0, 'POINT')} + ' 円'"></td>
+    </tr>
+
+    <tr>
+        <th>預入日</th>
+        <td th:text="${asset.depositDate}"></td>
+    </tr>
+
+    <tr>
+        <th>満期日</th>
+        <td th:text="${asset.maturityDate}"></td>
+    </tr>
+
+    <tr>
+        <th>金利</th>
+        <td th:text="${asset.interestRate}"></td>
+    </tr>
+
+</table>
+
+<br>
+
+/一覧へ戻る</a>
+
+</body>
+</html>

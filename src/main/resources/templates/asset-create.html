@@ -1,0 +1,71 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>資産登録</title>
+  </head>
+  <body>
+    <h1>資産登録画面</h1>
+
+    <form th:action="@{/asset/create}" method="post">
+      <table border="1">
+        <tr>
+          <th>資産ID</th>
+          <td>
+            <input type="number" name="assetId" required />
+          </td>
+        </tr>
+
+        <tr>
+          <th>資産名</th>
+          <td>
+            <input type="text" name="assetName" required />
+          </td>
+        </tr>
+
+        <tr>
+          <th>種別</th>
+          <td>
+            <input type="text" name="assetType" required />
+          </td>
+        </tr>
+
+        <tr>
+          <th>金額</th>
+          <td>
+            <input type="number" name="amount" required />
+          </td>
+        </tr>
+
+        <tr>
+          <th>預入日</th>
+          <td>
+            <input type="date" name="depositDate" />
+          </td>
+        </tr>
+
+        <tr>
+          <th>満期日</th>
+          <td>
+            <input type="date" name="maturityDate" />
+          </td>
+        </tr>
+
+        <tr>
+          <th>金利</th>
+          <td>
+            <input type="number" step="0.01" name="interestRate" />
+          </td>
+        </tr>
+      </table>
+
+      <br />
+
+      <button type="submit">登録</button>
+    </form>
+
+    <br />
+
+    <a th:href="@{/}"> 一覧へ戻る </a>
+  </body>
+</html>
