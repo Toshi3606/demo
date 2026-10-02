@@ -5,11 +5,11 @@
     <title>資産一覧</title>
   </head>
   <body>
-    <h1>資産一覧画面</h1>
+    <h1>資産管理システム</h1>
 
-    <p>
-      <a th:href="@{/asset/new}"> 新規登録 </a>
-    </p>
+    <h2>資産一覧画面</h2>
+
+    <a th:href="@{/top}">トップへ戻る</a>
 
     <table border="1">
       <tr>
@@ -17,37 +17,17 @@
         <th>資産名</th>
         <th>種別</th>
         <th>金額</th>
-        <th>詳細</th>
-        <th>編集</th>
+        <th>操作</th>
       </tr>
 
       <tr th:each="asset : ${assets}">
         <td th:text="${asset.assetId}"></td>
-
         <td th:text="${asset.assetName}"></td>
-
         <td th:text="${asset.assetType}"></td>
-
-        <td
-          th:text="${#numbers.formatDecimal(asset.amount,0,'COMMA',0,'POINT')} + ' 円'"
-        ></td>
+        <td th:text="${#numbers.formatInteger(asset.amount, 0, 'COMMA')}"></td>
 
         <td>
-          <a th:href="@{/asset/{id}(id=${asset.assetId})}"> 詳細 </a>
-        </td>
-
-        <td>
-          <a th:href="@{/asset/edit/{id}(id=${asset.assetId})}"> 編集 </a>
-        </td>
-
-        <td>
-          <form
-            th:action="@{/asset/delete/{id}(id=${asset.assetId})}"
-            method="post"
-            onsubmit="return confirm('削除しますか？');"
-          >
-            <button type="submit">削除</button>
-          </form>
+          <a th:href="@{/assets/{id}(id=${asset.assetId})}"> 詳細 </a>
         </td>
       </tr>
     </table>

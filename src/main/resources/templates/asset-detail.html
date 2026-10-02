@@ -1,55 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>資産詳細</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>資産詳細</title>
+  </head>
+  <body>
+    <h2>資産詳細画面</h2>
 
-<h1>資産詳細画面</h1>
+    <p>資産ID : <span th:text="${id}"></span></p>
 
-<table border="1">
+    <p>資産名 : 定期預金A</p>
 
-    <tr>
-        <th>資産ID</th>
-        <td th:text="${asset.assetId}"></td>
-    </tr>
+    <p>種別 : 預金</p>
 
-    <tr>
-        <th>資産名</th>
-        <td th:text="${asset.assetName}"></td>
-    </tr>
+    <p>金額 : 100万円</p>
 
-    <tr>
-        <th>種別</th>
-        <td th:text="${asset.assetType}"></td>
-    </tr>
+    <p>満期日 : 2030-12-31</p>
 
-    <tr>
-        <th>金額</th>
-        <td th:text="${#numbers.formatDecimal(asset.amount, 0, 'COMMA', 0, 'POINT')} + ' 円'"></td>
-    </tr>
+    <p>金利 : 0.30%</p>
 
-    <tr>
-        <th>預入日</th>
-        <td th:text="${asset.depositDate}"></td>
-    </tr>
+    <a th:href="@{'/assets/edit/' + ${id}}"> 編集 </a>
 
-    <tr>
-        <th>満期日</th>
-        <td th:text="${asset.maturityDate}"></td>
-    </tr>
+    |
 
-    <tr>
-        <th>金利</th>
-        <td th:text="${asset.interestRate}"></td>
-    </tr>
-
-</table>
-
-<br>
-
-/一覧へ戻る</a>
-
-</body>
+    <a th:href="@{/assets}"> 戻る </a>
+  </body>
 </html>

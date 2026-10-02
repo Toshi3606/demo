@@ -1,0 +1,26 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ログイン画面</title>
+  </head>
+  <body>
+    <h1>資産管理システム</h1>
+
+    <h2>ログイン画面</h2>
+
+    <form th:action="@{/login}" method="post">
+      <p>
+        <input type="text" name="loginId" placeholder="ログインID" />
+      </p>
+
+      <p>
+        <input type="password" name="password" placeholder="パスワード" />
+      </p>
+
+      <button type="submit">ログイン</button>
+    </form>
+
+    <p th:if="${errorMessage}" th:text="${errorMessage}" style="color: red"></p>
+  </body>
+</html>

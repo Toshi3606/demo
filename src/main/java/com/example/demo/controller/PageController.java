@@ -22,7 +22,7 @@ public class PageController {
     }
 
     // 一覧画面
-    @GetMapping("/")
+    @GetMapping("/assets-page")
     public String index(Model model) {
 
         List<Asset> assets = assetService.findAll();

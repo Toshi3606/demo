@@ -1,0 +1,42 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>トップページ</title>
+  </head>
+  <body>
+    <h1>資産管理システム</h1>
+
+    <h2>トップページ</h2>
+
+    <p>
+      <a th:href="@{/assets}">
+        <button type="button">資産一覧</button>
+      </a>
+    </p>
+
+    <p>
+      <a th:href="@{/assets/new}">
+        <button type="button">資産登録</button>
+      </a>
+    </p>
+
+    <p>
+      <a th:href="@{/maturity}">
+        <button type="button">満期日管理</button>
+      </a>
+    </p>
+
+    <p>
+      <a th:href="@{/interest}">
+        <button type="button">金利管理</button>
+      </a>
+    </p>
+
+    <p>
+      <a th:href="@{/login}">
+        <button type="button">ログアウト</button>
+      </a>
+    </p>
+  </body>
+</html>
