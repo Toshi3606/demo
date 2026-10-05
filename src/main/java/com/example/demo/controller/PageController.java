@@ -66,7 +66,7 @@ public class PageController {
 
         assetService.update(id, asset);
 
-        return "redirect:/";
+        return "redirect:assets-page/";
     }
 
     // 新規登録画面
@@ -85,7 +85,7 @@ public class PageController {
 
         assetService.create(asset);
 
-        return "redirect:/";
+        return "redirect:/assets-page";
     }
     
     // 削除処理
@@ -94,7 +94,7 @@ public String delete(@PathVariable Long id) {
 
     assetService.delete(id);
 
-    return "redirect:/";
+    return "redirect:assets-page/";
 }
 }
 

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.entity.Asset;
 import com.example.demo.service.AssetService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/assets")
 public class AssetController {
@@ -19,7 +21,13 @@ public class AssetController {
      * 資産一覧
      */
     @GetMapping
-    public String assetList(Model model) {
+    public String assetList(
+            Model model,
+            HttpSession session) {
+
+        if (session.getAttribute("loginUser") == null) {
+            return "redirect:/login";
+        }
 
         model.addAttribute(
                 "assets",
@@ -34,7 +42,12 @@ public class AssetController {
     @GetMapping("/{id}")
     public String assetDetail(
             @PathVariable Long id,
-            Model model) {
+            Model model,
+            HttpSession session) {
+
+        if (session.getAttribute("loginUser") == null) {
+            return "redirect:/login";
+        }
 
         model.addAttribute(
                 "asset",
@@ -47,7 +60,13 @@ public class AssetController {
      * 資産登録画面
      */
     @GetMapping("/new")
-    public String showRegisterForm(Model model) {
+    public String showRegisterForm(
+            Model model,
+            HttpSession session) {
+
+        if (session.getAttribute("loginUser") == null) {
+            return "redirect:/login";
+        }
 
         model.addAttribute(
                 "asset",
@@ -61,7 +80,12 @@ public class AssetController {
      */
     @PostMapping("/new")
     public String registerAsset(
-            @ModelAttribute Asset asset) {
+            @ModelAttribute Asset asset,
+            HttpSession session) {
+
+        if (session.getAttribute("loginUser") == null) {
+            return "redirect:/login";
+        }
 
         assetService.create(asset);
 
@@ -74,7 +98,12 @@ public class AssetController {
     @GetMapping("/edit/{id}")
     public String showEditForm(
             @PathVariable Long id,
-            Model model) {
+            Model model,
+            HttpSession session) {
+
+        if (session.getAttribute("loginUser") == null) {
+            return "redirect:/login";
+        }
 
         model.addAttribute(
                 "asset",
@@ -89,7 +118,12 @@ public class AssetController {
     @PostMapping("/edit/{id}")
     public String updateAsset(
             @PathVariable Long id,
-            @ModelAttribute Asset asset) {
+            @ModelAttribute Asset asset,
+            HttpSession session) {
+
+        if (session.getAttribute("loginUser") == null) {
+            return "redirect:/login";
+        }
 
         assetService.update(id, asset);
 
@@ -99,12 +133,17 @@ public class AssetController {
     /**
      * 削除処理
      */
-    @GetMapping("/delete/{id}")
-    public String deleteAsset(
-            @PathVariable Long id) {
+  @GetMapping("/delete/{id}")
+public String deleteAsset(
+        @PathVariable Long id,
+        HttpSession session) {
 
-        assetService.delete(id);
-
-        return "redirect:/assets";
+    if (session.getAttribute("loginUser") == null) {
+        return "redirect:/login";
     }
+
+    assetService.delete(id);
+
+    return "redirect:/assets";
+}
 }

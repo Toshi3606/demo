@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.service.AssetService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class InterestController {
 
@@ -14,7 +16,13 @@ public class InterestController {
     private AssetService assetService;
 
     @GetMapping("/interest")
-    public String interest(Model model) {
+    public String interest(
+            Model model,
+            HttpSession session) {
+
+        if (session.getAttribute("loginUser") == null) {
+            return "redirect:/login";
+        }
 
         model.addAttribute(
                 "assets",
