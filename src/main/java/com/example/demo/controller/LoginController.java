@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.entity.User;
 import com.example.demo.service.LoginService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class LoginController {
 
@@ -30,7 +32,12 @@ public class LoginController {
     public String authenticate(
             @RequestParam String loginId,
             @RequestParam String password,
-            Model model) {
+            Model model,
+            HttpSession session) {
+
+        System.out.println("===== ログイン開始 =====");
+        System.out.println("入力loginId : " + loginId);
+        System.out.println("入力password: " + password);
 
         User user =
                 loginService.authenticate(
@@ -38,8 +45,18 @@ public class LoginController {
                         password);
 
         if (user != null) {
+
+            System.out.println("認証成功");
+            System.out.println("Session保存");
+
+            session.setAttribute(
+                    "loginUser",
+                    user);
+
             return "redirect:/top";
         }
+
+        System.out.println("認証失敗");
 
         model.addAttribute(
                 "errorMessage",

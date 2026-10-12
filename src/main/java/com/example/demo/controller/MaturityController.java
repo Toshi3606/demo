@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.service.AssetService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class MaturityController {
 
@@ -14,7 +16,13 @@ public class MaturityController {
     private AssetService assetService;
 
     @GetMapping("/maturity")
-    public String maturity(Model model) {
+    public String maturity(
+            Model model,
+            HttpSession session) {
+
+        if (session.getAttribute("loginUser") == null) {
+            return "redirect:/login";
+        }
 
         model.addAttribute(
                 "assets",

@@ -5,21 +5,40 @@
     <title>資産詳細</title>
   </head>
   <body>
-    <h2>資産詳細画面</h2>
+    <h1>資産詳細画面</h1>
 
-    <p>資産ID : <span th:text="${id}"></span></p>
+    <p>
+      資産ID :
+      <span th:text="${asset.assetId}"></span>
+    </p>
 
-    <p>資産名 : 定期預金A</p>
+    <p>
+      資産名 :
+      <span th:text="${asset.assetName}"></span>
+    </p>
 
-    <p>種別 : 預金</p>
+    <p>
+      種別 :
+      <span th:text="${asset.assetType}"></span>
+    </p>
 
-    <p>金額 : 100万円</p>
+    <p>
+      金額 :
+      <span th:text="${#numbers.formatInteger(asset.amount, 0, 'COMMA')}"></span
+      >円
+    </p>
 
-    <p>満期日 : 2030-12-31</p>
+    <p>
+      満期日 :
+      <span th:text="${asset.maturityDate}"></span>
+    </p>
 
-    <p>金利 : 0.30%</p>
+    <p>
+      金利 :
+      <span th:text="${asset.interestRate}"></span>%
+    </p>
 
-    <a th:href="@{'/assets/edit/' + ${id}}"> 編集 </a>
+    <a th:href="@{/assets/edit/{id}(id=${asset.assetId})}"> 編集 </a>
 
     |
 
